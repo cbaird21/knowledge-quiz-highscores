@@ -13,30 +13,135 @@
     />
   </head>
   <body>
-    <header>
-      <!-- create header with View high scores link -->
-      <h2 id="highscores">
-        <a href="#view-high-scores">View High Scores</a>
-      </h2>
-      <!-- create timer with count down of one minute -->
-      <h2 id="countdown"></h2>
-    </header>
-    <!-- main container -->
-    <main class="container">
-      <!-- div containing initalization of quiz info -->
-      <div class="info_box">
-        <div class="info_title">
-          <span>Coding Quiz Challenge</span>
-        </div>
-        <div class="info">
-          Try to answer the following code-related questions within the time
-          limit. Keep in mind that incorrect answers will penalize your
-          score/time by ten seconds!
-        </div>
+    <div class="info_box">
+      <div class="info_title">
+        <span>Coding Quiz Challenge</span>
+      </div>
+      <div class="info">
+        Try to answer the following code-related questions within the time
+        limit. Keep in mind that incorrect answers will penalize your score/time
+        by ten seconds!
       </div>
       <!-- Insert Button for start quiz -->
       <div class="start_btn"><button>Start Quiz</button></div>
-      <script src="./assets/js/script.js"></script>
-    </main>
+    </div>
+
+    <header>
+      <!-- create header with View high scores link -->
+      <h2 class="highscores">
+        <a href="#view-high-scores">View High Scores</a>
+      </h2>
+      <!-- create timer with count down of one minute -->
+      <h2 class="countdown">
+        <div class="time_text">Time Left</div>
+        <div class="time_left">15</div>
+      </h2>
+    </header>
+    <section>
+      <ul class="quiz">
+        <li>
+          <h4>Commonly used date tyes DO not include:</h4>
+          <ul class="choices">
+            <li>
+              <label>
+                <input type="radio" name="question0" value="A" /><span
+                  >strings</span
+                >
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="question0" value="B" /><span
+                  >booleans</span
+                >
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="question0" value="C" /><span
+                  >alerts</span
+                >
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="question0" value="D" /><span
+                  >numbers</span
+                >
+              </label>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h4>
+            The condition in an if / else statement is enclosed with _______.
+          </h4>
+          <ul class="choices">
+            <li>
+              <label>
+                <input type="radio" name="question1" value="A" /><span
+                  >quotes</span
+                >
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="question1" value="B" /><span
+                  >curly brackets</span
+                >
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="question1" value="C" /><span
+                  >parenthesis</span
+                >
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="question1" value="D" /><span
+                  >square brackets</span
+                >
+              </label>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h4>Arrays in JavaScript can be used to store _______.</h4>
+          <ul class="choices">
+            <li>
+              <label>
+                <input type="radio" name="question2" value="A" /><span
+                  >numbers and strings</span
+                >
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="question2" value="B" /><span
+                  >other arrays</span
+                >
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="question2" value="C" /><span
+                  >booleans</span
+                >
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="question2" value="D" /><span
+                  >all of the above</span
+                >
+              </label>
+            </li>
+          </ul>
+        </li>
+        <script src="./assets/js/script.js"></script>
+      </ul>
+    </section>
   </body>
 </html>
