@@ -9,18 +9,27 @@
   <body>
     <header>
       <!-- create header with View high scores link -->
+      <h2 id="highscores">
+        <a href="#view-high-scores">View High Scores</a>
+      </h2>
       <!-- create timer with count down of one minute -->
+      <h2 id="countdown"></h2>
     </header>
+    <!-- main container -->
     <main class="container">
-      <div class="quiz">
-        <h2>Coding Quiz Challenge</h2>
-        <p>
+      <!-- div containing initalization of quiz info -->
+      <div class="info_box">
+        <div class="info_title">
+          <span>Coding Quiz Challenge</span>
+        </div>
+        <div class="info">
           Try to answer the following code-related questions within the time
           limit. Keep in mind that incorrect answers will penalize your
           score/time by ten seconds!
-        </p>
-        <!-- Insert Button for start quiz -->
+        </div>
       </div>
+      <!-- Insert Button for start quiz -->
+      <div class="start_btn"><button>Start Quiz</button></div>
       <script src="./assets/js/script.js"></script>
     </main>
   </body>
