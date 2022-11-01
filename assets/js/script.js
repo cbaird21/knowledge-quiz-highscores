@@ -1,6 +1,7 @@
 // timer that counts down from 60
 function countDown() {
   var timeLeft = 60;
+  
   if (timeLeft > 1) {
     timerEl.textContent = timeLeft + " seconds remaining";
     timeLeft--;
