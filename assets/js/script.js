@@ -5,7 +5,7 @@ var startBtn = document
   .addEventListener("click", runQuiz);
 // var timeLeft = countDown - now;
 
-var questions = [
+var questionsArr = [
   {
     title: "Commonly used data types Do not include.",
     choices: ["strings", "booleans", "alerts", "numbers"],
@@ -27,18 +27,22 @@ var questions = [
 
 function runQuiz() {
   document.querySelector(".title").textContent = questions[0].title;
+  document.querySelector(".choices").textContent = questions[0].choices;
 }
-
 function countDown() {
-  var timerEl = 75;
-  if (timeLeft > 1) {
-    timerEl.textContent = timeLeft + " seconds remaining";
-    timeLeft--;
-  } else if (timeLeft === 1) {
-    timerEl.textContent = timeLeft + "seconds remaining";
-    timeLeft--;
-  } else {
-    // Use `clearInterval()` to stop the timer
-    clearInterval(msgInterval);
-  }
+  var timerEl = document.getElementById("seconds");
+  var timeLeft = 75;
+  var timer = setInterval(function () {
+    if (timeLeft > 1) {
+      timerEl.textContent = timeLeft + " seconds remaining";
+      timeLeft--;
+    } else if (timeLeft === 1) {
+      timerEl.textContent = timeLeft + "seconds remaining";
+      timeLeft--;
+    } else {
+      // Use `clearInterval()` to stop the timer
+      clearInterval(timer);
+    }
+  }, 1000);
 }
+countDown();
