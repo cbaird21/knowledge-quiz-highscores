@@ -25,6 +25,7 @@ var score = 0;
 var questionIndex = 0;
 var choices = document.querySelector(".choices");
 var title = document.querySelector(".title");
+var answer = document.querySelector("answer");
 
 function runQuiz() {
   // creat a loop to iterate through your array of objects
