@@ -10,6 +10,9 @@ var questionDiv = document.getElementById("questionDiv");
 var startBtn = document.getElementById("start-button");
 // created new element
 var olCreate = document.createElement("ol");
+// var resetBtn = document.getElementById("reset-button");
+// let shuffledQuestions, currentQuestionIndex
+
 
 // var holdInterval = 0;
 // questions array of objects
@@ -46,9 +49,11 @@ startBtn.addEventListener("click", function () {
       timerEl.textContent = "Out of time!";
       // Use clearInterval() to stop the timer
       clearInterval(timer);
+      finish();
     }
   }, 1000);
   renderQuestion(questionIndex); //question index = 0
+  // is this where shufftleQuestions= questions.sort(() => Math.random()- .5)
 });
 function renderQuestion(questionIndex) {
   questionDiv.textContent = "";
@@ -64,6 +69,7 @@ function renderQuestion(questionIndex) {
   liveChoices.forEach(function (newItem) {
     var listItem = document.createElement("li");
     listItem.textContent = newItem;
+    listItem.setAttribute("type", "A");
     questionDiv.appendChild(olCreate);
     olCreate.appendChild(listItem);
     listItem.addEventListener("click", compare);
@@ -122,3 +128,7 @@ function finish() {
   if (timeLeft >= 0) {
   }
 }
+
+// resetBtn.addEventListener("click"()){
+
+// }
