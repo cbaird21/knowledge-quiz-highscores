@@ -4,42 +4,39 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Coding Quiz</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="./assets/css/style.css"
-      media="screen"
-    />
+    <link rel="stylesheet" href="./Assets/CSS/style.css" />
+    <title>Code Quiz</title>
   </head>
   <body>
     <header>
-      <!-- create header with View high scores link -->
-      <h2 id="highscores">
-        <a href="#view-high-scores">View High Scores</a>
-      </h2>
-      <!-- create timer with count down of one minute -->
+      <h4 id="highScore">View High Scores</h4>
+      <!-- view high scores on top left and timer on top right -->
+      <!-- extra: timer not visible until quiz starts -->
       <p id="seconds"></p>
     </header>
-    <div class="info_box">
-      <div class="info_title">
-        <span>Coding Quiz Challenge</span>
+    <body>
+      <div id="card-box">
+        <!-- paragraph with header "Code Quiz", quiz directions and a start button  -->
+        <div class="card">
+          <h1><span class="title">Code Quiz</span></h1>
+          <p class="choices">
+            Try to answer the following code related questions within the given
+            time frame and beat the high score!
+          </p>
+        </div>
+        <button id="start-button">Start Quiz</button>
       </div>
-      <div class="info">
-        Try to answer the following code-related questions within the time
-        limit. Keep in mind that incorrect answers will penalize your score/time
-        by ten seconds!
+
+      <!-- as each question is answered the computer responds below with correct!! and moves to next question -->
+      <!-- structure for multiple chopice questions?? is there a better way to do this? 
+            <!-- do i need to create a carousel of questions? -->
+      <div class="card">
+        <!-- dynamically input question header for each card using array of objects in js -->
+        <h1 class="title"></h1>
+        <div class="choices"></div>
+        <h3 id="answer"><!--correct! or incorrect! for previous question--></h3>
       </div>
-      <!-- Insert Button for start quiz -->
-      <div class="start_btn"><button>Start Quiz</button></div>
-    </div>
-    <h1 class="quiz">
-      <div class="title"></div>
-      <div class="choices"></div>
-      <div class="answers"></div>
-      <button id="next">Next</button>
-      <script src="./assets/js/script.js"></script>
-    </h1>
+    </body>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
-<!-- <button class="submit">get results</button> -->

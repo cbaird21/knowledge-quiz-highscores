@@ -1,11 +1,8 @@
-var questions = document.querySelector(".quiz");
-var timerEl = document.getElementById("seconds");
-var startBtn = document
-  .querySelector(".start_btn")
-  .addEventListener("click", runQuiz);
+// var questions = document.querySelector(".quiz");
+// var timerEl = document.getElementById("seconds");
 // var timeLeft = countDown - now;
 
-var questionsArr = [
+var questions = [
   {
     title: "Commonly used data types Do not include.",
     choices: ["strings", "booleans", "alerts", "numbers"],
@@ -24,25 +21,48 @@ var questionsArr = [
   },
 ];
 // console.log(questions[0].answer);
+var score = 0;
+var questionIndex = 0;
+var choices = document.querySelector(".choices");
+var title = document.querySelector(".title");
 
 function runQuiz() {
-  document.querySelector(".title").textContent = questions[0].title;
-  document.querySelector(".choices").textContent = questions[0].choices;
+  // creat a loop to iterate through your array of objects
+
+  title.textContent = questions[questionIndex].title;
+
+  for (var i = 0; i < questions[questionIndex].choices.length; i++) {
+    var button = document.createElement("button");
+    button.textContent = questions[questionIndex].choices[i];
+    choices.appendChild(button);
+  }
+  function nextIndex() {
+    questionIndex++;
+    runQuiz();
+  }
+  button.addEventListener("click", nextIndex);
+  // timer that counts down from 60
+  function countDown() {
+    var timerEl = document.getElementById("seconds");
+    var timeLeft = 75;
+    var timer = setInterval(function () {
+      if (timeLeft > 1) {
+        timerEl.textContent = "Timer: " + timeLeft + " seconds remaining";
+        timeLeft--;
+      } else if (timeLeft === 1) {
+        timerEl.textContent = "Timer: " + timeLeft + "second remaining";
+        timeLeft--;
+      } else {
+        timerEl.textContent = "Out of time!";
+
+        // Use clearInterval() to stop the timer
+        clearInterval(timer);
+      }
+    }, 1000);
+  }
+  countDown();
 }
-function countDown() {
-  var timerEl = document.getElementById("seconds");
-  var timeLeft = 75;
-  var timer = setInterval(function () {
-    if (timeLeft > 1) {
-      timerEl.textContent = timeLeft + " seconds remaining";
-      timeLeft--;
-    } else if (timeLeft === 1) {
-      timerEl.textContent = timeLeft + "seconds remaining";
-      timeLeft--;
-    } else {
-      // Use `clearInterval()` to stop the timer
-      clearInterval(timer);
-    }
-  }, 1000);
-}
-countDown();
+
+var startBtn = document
+  .getElementById("start-button")
+  .addEventListener("click", runQuiz);
