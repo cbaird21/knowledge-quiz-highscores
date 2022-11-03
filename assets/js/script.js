@@ -142,8 +142,14 @@ function finish() {
 
     var createBtn =document.createElement("button");
     createBtn.setAttribute("id", "createBtn");
-    createBtn.setAttribute("type", "submit");
+    createBtn.setAttribute("type", "button");
     createBtn.textContent = "Save your score!";
+
+    createBtn.addEventListener("click", function(event){
+      event.preventDefault()
+      localStorage.setItem("user", "createInput.value");
+      console.log(createInput.value);
+    })
 
     // appending created elements to the page
     createForm.appendChild(createInput);
@@ -152,7 +158,20 @@ function finish() {
     }
     createForm();
 }
+function saveHighScore{
+  var finalScore = score/questions.length + timeLeft;
+  var userName =documnet.getElementById("createInput").value
+  console.log("Username:" + userName);
+  console.log("Score", finalScore);
+  localStorage.setItem("userName" , userName);
+  localStorage.setItem("score",finalScore);
+}
 
-// resetBtn.addEventListener("click"()){
+function vieHighScore(){
+  alert("high score: " + localStorage.getItem("userName"))
+}
+
+// }
+// // resetBtn.addEventListener("click"()){
 
 // }
