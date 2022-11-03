@@ -34,7 +34,7 @@ var questions = [
   },
 ];
 var timeLeft = 75;
-
+// added event listener for click on function to start quiz and timer
 startBtn.addEventListener("click", function () {
   // timer that counts down from 75
   var timer = setInterval(function () {
@@ -78,7 +78,7 @@ function renderQuestion(questionIndex) {
     listItem.addEventListener("click", compare);
   });
 }
-
+// comparing the answer input to true answer
 function compare(event) {
   var element = event.target;
   if (element.matches("li")) {
@@ -111,6 +111,7 @@ function compare(event) {
   }
   questionDiv.appendChild(answerDiv);
 }
+// created finish function. what  to say and how to calculate the number of true answers.
 function finish() {
   questionDiv.textContent = "";
   timerEl.textContent = "";
@@ -128,6 +129,9 @@ function finish() {
 
   questionDiv.appendChild(createP);
 
+      createForm();
+}
+// creating form to fill out for highscores after the game
   function createForm(){
     
     // creates form element to hold input and submit button
@@ -139,12 +143,14 @@ function finish() {
     createInput.setAttribute("id", "createInput");
     createInput.setAttribute("name","userName");
     createInput.setAttribute("placeholder", "Enter your name...")
-
+// button to hit after finishing input data 
     var createBtn =document.createElement("button");
     createBtn.setAttribute("id", "createBtn");
     createBtn.setAttribute("type", "button");
     createBtn.textContent = "Save your score!";
+// saving content with event listener
 
+// added event listneer to what the user inputs
     createBtn.addEventListener("click", function(event){
       event.preventDefault()
       localStorage.setItem("user", "createInput.value");
@@ -155,23 +161,29 @@ function finish() {
     createForm.appendChild(createInput);
     createForm.appendChild(createBtn);
     questionDiv.appendChild(createForm);
-    }
-    createForm();
+
+    var submitBtn =document.getElementById("createBtn");
+    submitBtn.addEventListener("click", function(event){
+      event.preventDefault();
+      saveHighScore();
+    })
 }
-function saveHighScore{
+// still need to create a place to store multiple score to be able to navigate too when clicking high score.array?user.push?
+function saveHighScore(){
   var finalScore = score/questions.length + timeLeft;
-  var userName =documnet.getElementById("createInput").value
+  var userName =document.getElementById("createInput").value
   console.log("Username:" + userName);
-  console.log("Score", finalScore);
+  console.log("Score" + finalScore);
   localStorage.setItem("userName" , userName);
   localStorage.setItem("score",finalScore);
 }
-
-function vieHighScore(){
+// Is this variable needed or how do i reference this data when view high scores is selected on the website.
+// var viewHighScore = document.getElementById("viewHighScore")
+function viewHighScore(){
   alert("high score: " + localStorage.getItem("userName"))
 }
 
-// }
+// 
 // // resetBtn.addEventListener("click"()){
 
 // }
