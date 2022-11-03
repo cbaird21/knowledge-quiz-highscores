@@ -2,15 +2,16 @@
 var score = 0;
 var questionIndex = 0;
 var penalty = 10;
-
+var scores = [];
 var header = document.getElementById("header");
 var timerEl = document.getElementById("seconds");
 var container = document.getElementById("container");
 var questionDiv = document.getElementById("questionDiv");
 var startBtn = document.getElementById("start-button");
+var highScores = document.getElementById("highScores");
 // created new element
 var olCreate = document.createElement("ol");
-// var resetBtn = document.getElementById("reset-button");
+var resetBtn = document.getElementById("resetBtn");
 // let shuffledQuestions, currentQuestionIndex
 
 // var holdInterval = 0;
@@ -35,29 +36,32 @@ var questions = [
 ];
 var timeLeft = 75;
 // added event listener for click on function to start quiz and timer
-startBtn.addEventListener("click", function () {
-  // timer that counts down from 75
-  var timer = setInterval(function () {
-    if (timeLeft > 1) {
-      timerEl.textContent = "Timer: " + timeLeft + " seconds remaining";
-      timeLeft--;
-    } else if (timeLeft === 1) {
-      timerEl.textContent = "Timer: " + timeLeft + "second remaining";
-      timeLeft--;
-    } else {
-      timerEl.textContent = "Out of time!";
-      // Use clearInterval() to stop the timer
-      clearInterval(timer)
-    } 
-    // clearing timer if finished before timer runs out
-    if (questionIndex >= questions.length) {
-      timerEl.textContent = "Time to spare!";
-      clearInterval();
-    }
-  }, 1000);
-  renderQuestion(questionIndex); //question index = 0
-  // is this where shufftleQuestions= questions.sort(() => Math.random()- .5)
-});
+function startQuiz(){
+    // timer that counts down from 75
+    var timer = setInterval(function () {
+      if (timeLeft > 1) {
+        timerEl.textContent = "Timer: " + timeLeft + " seconds remaining";
+        timeLeft--;
+      } else if (timeLeft === 1) {
+        timerEl.textContent = "Timer: " + timeLeft + "second remaining";
+        timeLeft--;
+      } else {
+        timerEl.textContent = "Out of time!";
+        // Use clearInterval() to stop the timer
+        clearInterval(timer);
+      }
+      // clearing timer if finished before timer runs out
+      if (questionIndex >= questions.length) {
+        timerEl.textContent = "Time to spare!";
+        clearInterval();
+      }
+    }, 1000);
+    renderQuestion(questionIndex); //question index = 0
+    // is this where shufftleQuestions= questions.sort(() => Math.random()- .5)
+}
+
+startBtn.addEventListener("click",startQuiz)
+ 
 function renderQuestion(questionIndex) {
   questionDiv.textContent = "";
   olCreate.textContent = "";
@@ -129,61 +133,79 @@ function finish() {
 
   questionDiv.appendChild(createP);
 
-      createForm();
+  createForm();
 }
 // creating form to fill out for highscores after the game
-  function createForm(){
-    
-    // creates form element to hold input and submit button
-    var createForm = document.createElement("form");
-    createForm.setAttribute("id", "create input");
-    
-    // create Input element and provide style and attributes
-    var createInput = document.createElement("input");
-    createInput.setAttribute("id", "createInput");
-    createInput.setAttribute("name","userName");
-    createInput.setAttribute("placeholder", "Enter your name...")
-// button to hit after finishing input data 
-    var createBtn =document.createElement("button");
-    createBtn.setAttribute("id", "createBtn");
-    createBtn.setAttribute("type", "button");
-    createBtn.textContent = "Save your score!";
-// saving content with event listener
+function createForm() {
+  // creates form element to hold input and submit button
+  var createForm = document.createElement("form");
+  createForm.setAttribute("id", "create input");
 
-// added event listneer to what the user inputs
-    createBtn.addEventListener("click", function(event){
-      event.preventDefault()
-      localStorage.setItem("user", "createInput.value");
-      console.log(createInput.value);
-    })
+  // create Input element and provide style and attributes
+  var createInput = document.createElement("input");
+  createInput.setAttribute("id", "createInput");
+  createInput.setAttribute("name", "userName");
+  createInput.setAttribute("placeholder", "Enter your name...");
+  // button to hit after finishing input data
+  var createBtn = document.createElement("button");
+  createBtn.setAttribute("id", "createBtn");
+  createBtn.setAttribute("type", "button");
+  createBtn.textContent = "Save your score!";
+  // saving content with event listener
 
-    // appending created elements to the page
-    createForm.appendChild(createInput);
-    createForm.appendChild(createBtn);
-    questionDiv.appendChild(createForm);
+  // added event listneer to what the user inputs
+  createBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    localStorage.setItem("user", "createInput.value");
+    console.log(createInput.value);
+    highScores.style.visibility = "visible";
+    questionDiv.style.visibility = "hidden";
+  });
 
-    var submitBtn =document.getElementById("createBtn");
-    submitBtn.addEventListener("click", function(event){
-      event.preventDefault();
-      saveHighScore();
-    })
+  // appending created elements to the page
+  createForm.appendChild(createInput);
+  createForm.appendChild(createBtn);
+  questionDiv.appendChild(createForm);
+
+  var submitBtn = document.getElementById("createBtn");
+  submitBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    saveHighScore();
+  });
 }
 // still need to create a place to store multiple score to be able to navigate too when clicking high score.array?user.push?
-function saveHighScore(){
-  var finalScore = score/questions.length + timeLeft;
-  var userName =document.getElementById("createInput").value
+function saveHighScore() {
+  var finalScore = score / questions.length + timeLeft;
+  var userName = document.getElementById("createInput").value;
   console.log("Username:" + userName);
   console.log("Score" + finalScore);
-  localStorage.setItem("userName" , userName);
-  localStorage.setItem("score",finalScore);
+  var highScoreObject = {
+    initals: userName,
+    score: finalScore,
+  };
+  scores.push(highScoreObject);
+  localStorage.setItem("highScores", JSON.stringify(scores));
+  viewHighScore();
 }
 // Is this variable needed or how do i reference this data when view high scores is selected on the website.
 // var viewHighScore = document.getElementById("viewHighScore")
-function viewHighScore(){
-  alert("high score: " + localStorage.getItem("userName"))
+function viewHighScore() {
+  highScores.innerHTML=""
+  var localScoresStorage = JSON.parse(localStorage.getItem("highScores")) || [];
+  console.log(localScoresStorage);
+  for (var i = 0; i < localScoresStorage.length; i++) {
+    var scoresDiv = document.createElement("div");
+    scoresDiv.textContent = `${localScoresStorage[i].initals}: ${localScoresStorage[i].score} `;
+    highScores.appendChild(scoresDiv);
+  }
 }
 
-// 
-// // resetBtn.addEventListener("click"()){
-
-// }
+//
+resetBtn.addEventListener("click",function(){
+  score = 0;
+ questionIndex = 0;
+ timeLeft =75; 
+ highScores.style.visibility = "hidden";
+ questionDiv.style.visibility = "visible";
+ startQuiz();
+})

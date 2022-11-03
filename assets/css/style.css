@@ -45,3 +45,6 @@ form{
   flex-direction: column;
   align-items:center;
 }
+#highScores{
+  visibility: hidden;
+}
