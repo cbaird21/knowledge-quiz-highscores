@@ -13,7 +13,6 @@ var olCreate = document.createElement("ol");
 // var resetBtn = document.getElementById("reset-button");
 // let shuffledQuestions, currentQuestionIndex
 
-
 // var holdInterval = 0;
 // questions array of objects
 var questions = [
@@ -48,8 +47,12 @@ startBtn.addEventListener("click", function () {
     } else {
       timerEl.textContent = "Out of time!";
       // Use clearInterval() to stop the timer
-      clearInterval(timer);
-      finish();
+      clearInterval(timer)
+    } 
+    // clearing timer if finished before timer runs out
+    if (questionIndex >= questions.length) {
+      timerEl.textContent = "Time to spare!";
+      clearInterval();
     }
   }, 1000);
   renderQuestion(questionIndex); //question index = 0
@@ -93,7 +96,7 @@ function compare(event) {
       answerDiv.textContent =
         "Wrong!! The correct answer is: " +
         questions[questionIndex].answer +
-        "\nYou have been docked " +
+        "You have been docked " +
         penalty +
         " seconds..";
     }
@@ -125,8 +128,29 @@ function finish() {
 
   questionDiv.appendChild(createP);
 
-  if (timeLeft >= 0) {
-  }
+  function createForm(){
+    
+    // creates form element to hold input and submit button
+    var createForm = document.createElement("form");
+    createForm.setAttribute("id", "create input");
+    
+    // create Input element and provide style and attributes
+    var createInput = document.createElement("input");
+    createInput.setAttribute("id", "createInput");
+    createInput.setAttribute("name","userName");
+    createInput.setAttribute("placeholder", "Enter your name...")
+
+    var createBtn =document.createElement("button");
+    createBtn.setAttribute("id", "createBtn");
+    createBtn.setAttribute("type", "submit");
+    createBtn.textContent = "Save your score!";
+
+    // appending created elements to the page
+    createForm.appendChild(createInput);
+    createForm.appendChild(createBtn);
+    questionDiv.appendChild(createForm);
+    }
+    createForm();
 }
 
 // resetBtn.addEventListener("click"()){
