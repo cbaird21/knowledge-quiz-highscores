@@ -1,44 +1,45 @@
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: Arial;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
 #container{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  padding:10% 20%;
- 
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    padding: 5%;
 }
-#header{
-  display:flex;
-  justify-content: space-between;
-  background-color: purple;
-  color:white;
-  padding: 2%;
-}
-#questiondiv{
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
-  
+#header{
+    display: flex;
+    justify-content: space-between;
+    background-color: purple;
+    color:azure;
+    padding: 1%;
+}
+#questionDiv {
+    display: flex;
+    background-color: lightgrey;
+    flex-direction: column;
+    align-content:center;
+    align-items: center;
+    padding: 2%;
+    border-radius: 6px;
+    box-shadow: 10px;
 }
 #start-button{
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#reset-button{
+/* #reset-button{
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 form{
   width: 100%;
   display: flex;

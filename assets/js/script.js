@@ -12,8 +12,9 @@ var highScores = document.getElementById("highScores");
 // created new element
 var olCreate = document.createElement("ol");
 var resetBtn = document.getElementById("resetBtn");
+var resetEl = document.getElementById("resetBox");
 // let shuffledQuestions, currentQuestionIndex
-
+resetEl.style.visibility = "hidden";
 // var holdInterval = 0;
 // questions array of objects
 var questions = [
@@ -36,32 +37,32 @@ var questions = [
 ];
 var timeLeft = 75;
 // added event listener for click on function to start quiz and timer
-function startQuiz(){
-    // timer that counts down from 75
-    var timer = setInterval(function () {
-      if (timeLeft > 1) {
-        timerEl.textContent = "Timer: " + timeLeft + " seconds remaining";
-        timeLeft--;
-      } else if (timeLeft === 1) {
-        timerEl.textContent = "Timer: " + timeLeft + "second remaining";
-        timeLeft--;
-      } else {
-        timerEl.textContent = "Out of time!";
-        // Use clearInterval() to stop the timer
-        clearInterval(timer);
-      }
-      // clearing timer if finished before timer runs out
-      if (questionIndex >= questions.length) {
-        timerEl.textContent = "Time to spare!";
-        clearInterval();
-      }
-    }, 1000);
-    renderQuestion(questionIndex); //question index = 0
-    // is this where shufftleQuestions= questions.sort(() => Math.random()- .5)
+function startQuiz() {
+  // timer that counts down from 75
+  var timer = setInterval(function () {
+    if (timeLeft > 1) {
+      timerEl.textContent = "Timer: " + timeLeft + " seconds remaining";
+      timeLeft--;
+    } else if (timeLeft === 1) {
+      timerEl.textContent = "Timer: " + timeLeft + "second remaining";
+      timeLeft--;
+    } else {
+      timerEl.textContent = "Out of time!";
+      // Use clearInterval() to stop the timer
+      clearInterval(timer);
+    }
+    // clearing timer if finished before timer runs out
+    if (questionIndex >= questions.length) {
+      timerEl.textContent = "Time to spare!";
+      clearInterval();
+    }
+  }, 1000);
+  renderQuestion(questionIndex); //question index = 0
+  // is this where shufftleQuestions= questions.sort(() => Math.random()- .5)
 }
 
-startBtn.addEventListener("click",startQuiz)
- 
+startBtn.addEventListener("click", startQuiz);
+
 function renderQuestion(questionIndex) {
   questionDiv.textContent = "";
   olCreate.textContent = "";
@@ -160,6 +161,8 @@ function createForm() {
     console.log(createInput.value);
     highScores.style.visibility = "visible";
     questionDiv.style.visibility = "hidden";
+    resetEl.style.visibility = "hidden";
+   
   });
 
   // appending created elements to the page
@@ -190,22 +193,24 @@ function saveHighScore() {
 // Is this variable needed or how do i reference this data when view high scores is selected on the website.
 // var viewHighScore = document.getElementById("viewHighScore")
 function viewHighScore() {
-  highScores.innerHTML=""
+  highScores.innerHTML = "";
   var localScoresStorage = JSON.parse(localStorage.getItem("highScores")) || [];
   console.log(localScoresStorage);
   for (var i = 0; i < localScoresStorage.length; i++) {
     var scoresDiv = document.createElement("div");
     scoresDiv.textContent = `${localScoresStorage[i].initals}: ${localScoresStorage[i].score} `;
     highScores.appendChild(scoresDiv);
-  }
+}
+    resetEl.style.visibility = "visible";
 }
 
 //
-resetBtn.addEventListener("click",function(){
+resetBtn.addEventListener("click", function () {
   score = 0;
- questionIndex = 0;
- timeLeft =75; 
- highScores.style.visibility = "hidden";
- questionDiv.style.visibility = "visible";
- startQuiz();
-})
+  questionIndex = 0;
+  timeLeft = 75;
+  highScores.style.visibility = "hidden";
+  questionDiv.style.visibility = "visible";
+  resetEl.style.visibility = "hidden";
+  startQuiz();
+});

@@ -19,3 +19,8 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over  
 WHEN the game is over  
 THEN I can save my initials and score
+
+## Mock Up
+
+
+![Alt text](../../../../../../C:/Users/12149/Desktop/Bootcamp/knowledge-quiz-highscores/assets/images/loadout_image.png)
