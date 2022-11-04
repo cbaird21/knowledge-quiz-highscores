@@ -23,4 +23,6 @@ THEN I can save my initials and score
 ## Mock Up
 
 
-![Alt text](../../../../../../C:/Users/12149/Desktop/Bootcamp/knowledge-quiz-highscores/assets/images/loadout_image.png)
+![Alt text][def]
+
+[def]: ../../../../../../C:/Users/12149/Desktop/Bootcamp/knowledge-quiz-highscores/assets/images/loadout_image.png

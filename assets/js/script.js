@@ -162,7 +162,6 @@ function createForm() {
     highScores.style.visibility = "visible";
     questionDiv.style.visibility = "hidden";
     resetEl.style.visibility = "hidden";
-   
   });
 
   // appending created elements to the page
@@ -200,8 +199,8 @@ function viewHighScore() {
     var scoresDiv = document.createElement("div");
     scoresDiv.textContent = `${localScoresStorage[i].initals}: ${localScoresStorage[i].score} `;
     highScores.appendChild(scoresDiv);
-}
-    resetEl.style.visibility = "visible";
+  }
+  resetEl.style.visibility = "visible";
 }
 
 // reset button functions and what to reset everything too!
