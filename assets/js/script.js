@@ -13,7 +13,7 @@ var highScores = document.getElementById("highScores");
 var olCreate = document.createElement("ol");
 var resetBtn = document.getElementById("resetBtn");
 var resetEl = document.getElementById("resetBox");
-// let shuffledQuestions, currentQuestionIndex
+// hides reset button on page
 resetEl.style.visibility = "hidden";
 // var holdInterval = 0;
 // questions array of objects
@@ -204,7 +204,7 @@ function viewHighScore() {
     resetEl.style.visibility = "visible";
 }
 
-//
+// reset button functions and what to reset everything too!
 resetBtn.addEventListener("click", function () {
   score = 0;
   questionIndex = 0;
